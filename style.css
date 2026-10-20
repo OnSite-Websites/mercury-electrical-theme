@@ -4,7 +4,7 @@ Theme URI: https://mercuryelectrical.com.au/
 Author: OnSite Websites
 Author URI: https://onsitewebsites.com.au/
 Description: One-page custom theme for Mercury Electrical QLD, a residential electrician on the Fraser Coast. All page content is edited in Pages → Home with the standard WordPress block editor. Business details live in Appearance → Customize → Business Details.
-Version: 1.0.2
+Version: 1.0.3
 Requires at least: 6.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -153,8 +153,8 @@ strong{font-weight:700}
    Hero
    ========================================================================== */
 .me-hero{position:relative;overflow:hidden;background:var(--paper);--wl:max(var(--gutter),calc((100% - var(--wrap)) / 2));min-height:clamp(640px,92svh,800px);display:flex;align-items:center;padding:calc(var(--header-h) + 30px) 0 110px var(--wl)}
-.me-hero__photo{position:absolute;top:0;bottom:0;left:calc(var(--wl) + 660px);right:0;overflow:hidden;margin:0;background:var(--ink)}
-.me-hero__photo img{position:absolute;left:170px;top:-5%;width:calc(100% - 170px);height:110%;clip-path:polygon(32px 0,100% 0,100% 100%,0 100%);max-width:none;object-fit:cover;object-position:0% 62%}
+.me-hero__photo{position:absolute;top:0;bottom:0;left:calc(var(--wl) + 660px);right:0;overflow:hidden;margin:0}
+.me-hero__photo img{position:absolute;left:0;top:-5%;width:100%;height:110%;max-width:none;object-fit:cover;object-position:0% 62%}
 .me-bolt{position:absolute;display:block;pointer-events:none}
 .me-bolt__paper{fill:var(--paper)}
 .me-bolt__black{fill:var(--ink)}
@@ -204,12 +204,13 @@ strong{font-weight:700}
 .me-field--wide{grid-column:span 2}
 .me-field--full{grid-column:1/-1}
 .me-form--stack{grid-template-columns:repeat(2,minmax(0,1fr))}
-.me-form--stack .me-field--service,.me-form--stack .me-field--msg,.me-form--stack .me-form__submit{grid-column:1/-1}
+.me-form--stack .me-form__submit{grid-column:1/-1}
+.me-form--stack .me-field--service,.me-form--stack .me-field--msg{grid-column:auto}
 .me-field label,.me-form--live .ff-el-input--label label{font-size:13.5px;font-weight:600;color:var(--on-ink)}
 .me-field label span{color:var(--yellow)}
 .me-field input,.me-field select,.me-field textarea,.me-form--live .ff-el-form-control{width:100%;min-height:46px;border:2px solid transparent;border-radius:4px;background:var(--paper);color:var(--ink);font:500 16px/1.4 var(--body);padding:10px 12px;transition:border-color .2s,box-shadow .2s}
 .me-field textarea,.me-form--live textarea.ff-el-form-control{min-height:46px;height:46px;resize:vertical}
-.me-form--stack .me-field textarea{height:96px}
+.me-form--stack .me-field textarea{height:46px}
 .me-field--msg{grid-column:span 2}
 .me-field input:focus,.me-field select:focus,.me-field textarea:focus,.me-form--live .ff-el-form-control:focus{outline:none;border-color:var(--yellow);box-shadow:0 0 0 4px rgba(244,188,28,.3)}
 .me-form__submit{display:flex;justify-content:flex-end;margin:0!important}
@@ -369,9 +370,11 @@ strong{font-weight:700}
 .me-footer{background:var(--grain-light),#14120E;color:var(--on-ink-2);padding:clamp(70px,7vw,96px) var(--pad) 0;font-size:16px}
 .me-footer__inner{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px}
 .me-footer .me-brand{height:auto;color:var(--paper)}
-.me-footer .me-brand__badge{height:72px;background:none;padding:0}
+.me-footer .me-brand__badge{height:auto;background:none;padding:0}
 .me-footer .me-brand__badge::before,.me-footer .me-brand__badge::after{display:none}
-.me-footer .me-brand__name{margin-left:4px}
+.me-footer .me-brand__logo{width:104px}
+.me-footer .me-brand__name{display:flex;margin-left:8px;font-size:40px}
+.me-footer .me-brand__sub{font-size:14px;letter-spacing:.2em;margin-top:6px}
 .me-footer__blurb{margin:18px 0 18px!important;max-width:30ch}
 .me-footer__call{display:inline-flex;align-items:center;gap:10px;color:var(--yellow);font-weight:700;font-size:20px;text-decoration:none}
 .me-footer__call:hover{color:var(--paper)}
@@ -504,7 +507,7 @@ strong{font-weight:700}
 	.me-hero__buttons{margin-top:26px!important}
 	.me-hero{--ph:clamp(300px,60vw,540px);--bh:clamp(100px,26vw,200px)}
 	.me-hero__photo{position:relative;left:auto;right:auto;top:auto;bottom:auto;height:var(--ph);margin-top:calc(var(--bh) * .3)!important}
-	.me-hero__photo img{position:absolute;left:0;width:100%;top:0;height:100%;object-position:0% 60%;transform:none;clip-path:none}
+	.me-hero__photo img{position:absolute;top:0;height:100%;object-position:30% 60%;transform:none}
 	.me-bolt--v{display:none}
 	.me-watermark--hero{left:auto;right:-60px;bottom:auto;top:calc(var(--header-h) + 10px);width:clamp(220px,40vw,380px)}
 	.me-bolt--h{display:block;left:0;right:0;width:100%;top:auto;bottom:calc(var(--ph) - var(--bh) * .62);height:var(--bh);z-index:1}
@@ -542,13 +545,20 @@ strong{font-weight:700}
 	.me-trust__list li::before{grid-row:auto;width:24px;height:24px}
 	.me-trust__list strong{font-size:17px;white-space:nowrap}
 	.me-hero__title{font-size:clamp(44px,12.6vw,58px)}
-	.me-form,.me-form--stack{grid-template-columns:1fr}
+	.me-form{grid-template-columns:1fr}
+	.me-form--stack{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 10px}
+	.me-form--stack .me-field--service,.me-form--stack .me-field--msg{grid-column:1/-1}
+	.me-form--stack .me-field textarea{height:70px}
 	.me-field--wide{grid-column:auto}
 	.me-form__submit{justify-content:stretch}
 	.me-form__submit .me-submit,.me-form--stack .me-form__submit .me-submit{width:100%}
 	.me-field textarea{height:84px}
 	.me-hero__buttons .wp-block-button{flex:1 1 100%}
 	.me-hero__buttons .wp-block-button__link{width:100%}
+	.me-hero__photo{margin-top:calc(var(--bh) * .3 + 36px)!important}
+	.me-trust{margin-top:calc(var(--trust-h,170px) / -4)!important}
+	.me-quote{margin-top:calc(var(--trust-h,160px) * -.75)!important;padding-top:calc(var(--trust-h,160px) * .75 + 44px)}
+	.me-watermark--quote{top:calc(var(--trust-h,160px) * .75 + 20px)}
 	.me-about__media{padding-right:14px;padding-bottom:48px}
 	.me-about__main{box-shadow:14px 14px 0 var(--yellow),var(--shadow-card)}
 	.me-about__badge{top:18px;padding:10px 14px 11px}
@@ -567,7 +577,7 @@ strong{font-weight:700}
 	.me-process{clip-path:polygon(0 44px,30% 30px,34% 46px,64% 14px,68% 30px,100% 0,100% 100%,0 100%);margin-top:-44px!important;padding-top:100px}
 	/* Phone: the steps run down a vertical cable */
 	.me-steps{grid-template-columns:1fr;gap:34px;padding-left:0}
-	.me-cable{display:block;left:28px;right:auto;top:30px;bottom:60px;width:4px;height:auto}
+	.me-cable{display:block;left:28px;right:auto;top:30px;bottom:calc(var(--last-h,200px) - 30px);width:4px;height:auto}
 	.me-cable__fill{transform:scaleY(var(--p,1));transform-origin:center top}
 	.me-anim .me-cable__fill,.me-anim .me-steps.is-drawn .me-cable__fill{transform:scaleY(var(--p,0));transition:transform .12s linear}
 	.me-cable__spark{display:none}
@@ -597,6 +607,11 @@ strong{font-weight:700}
 	.me-brand__logo{width:50px}
 	.me-brand__badge{padding-right:14px}
 	.me-call{padding:9px 12px;font-size:15px}
+}
+@media (max-width:767px){
+	.me-footer .me-brand__logo{width:88px}
+	.me-footer .me-brand__name{font-size:34px}
+	.me-footer .me-brand__sub{font-size:12px;letter-spacing:.16em}
 }
 @media (hover:none){
 	.me-zoom::after{opacity:1;transform:none}

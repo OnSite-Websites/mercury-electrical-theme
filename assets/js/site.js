@@ -173,9 +173,10 @@
 		if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
 	}, { passive: true });
 	// How far the spark travels along the desktop cable.
-	function setRun() { if (steps && cable) { steps.style.setProperty('--run', (cable.offsetWidth + 10) + 'px'); } }
+	function setRun() { if (steps && cable) { steps.style.setProperty('--run', (cable.offsetWidth + 10) + 'px'); var last = steps.querySelector('.me-step:last-child'); if (last) { steps.style.setProperty('--last-h', last.offsetHeight + 'px'); } } }
 	window.addEventListener('resize', function () { setRun(); onScroll(); });
 	setRun();
+	if (document.fonts && document.fonts.ready) { document.fonts.ready.then(setRun); }
 
 	// Pause the slow looping touches while they're off-screen.
 	if ('IntersectionObserver' in window) {
