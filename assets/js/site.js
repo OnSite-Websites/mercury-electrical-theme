@@ -150,57 +150,32 @@
 	setTimeout(startHero, reduce ? 0 : 500);
 
 	/* ------------------------------------------------------------------
-	   Scroll-linked motion (one handler): header, parallax, drift, cable
+	   Scroll handler: header state and the phone process cable
 	   ------------------------------------------------------------------ */
 	var header = document.getElementById('me-header');
 	var hero = document.querySelector('.me-hero');
-	var heroImg = hero ? hero.querySelector('.me-hero__photo img') : null;
 	var steps = document.querySelector('.me-steps');
+	var cable = steps ? steps.querySelector('.me-cable') : null;
 	var ticking = false;
-
-	// Photos that drift gently inside their frames.
-	var drift = [];
-	each('.me-about__main img, .me-about__trench img, .me-service__img img', function (img) { drift.push({ el: img, k: 0.06, prop: '--dy' }); });
-	// Background layers that move at a different speed from the content.
-	each('.me-side-bolt', function (el) { drift.push({ el: el, k: -0.12, prop: '--by', self: true }); });
-	each('.me-watermark', function (el) { drift.push({ el: el, k: -0.1, prop: '--by', rot: 8 }); });
-	each('.me-services, .me-work, .me-process, .me-contact', function (el) { drift.push({ el: el, k: 0.08, prop: '--by', self: true }); });
 
 	function onScroll() {
 		var y = window.pageYOffset || doc.scrollTop;
 		var vh = window.innerHeight;
 		if (header) { header.classList.toggle('is-scrolled', y > 40); }
-		if (canAnimate) {
-			// Hero photo drifts a little slower than the page (desktop only).
-			if (heroImg) { heroImg.style.setProperty('--py', isDesktop() ? Math.min(y * 0.18, 160).toFixed(1) + 'px' : '0px'); }
-			var soft = isPhone() ? 0.5 : 1;
-			drift.forEach(function (d) {
-				var r = d.el.getBoundingClientRect();
-				if (r.bottom < -200 || r.top > vh + 200) { return; }
-				var off = ((r.top + r.height / 2) - vh / 2) * d.k * soft;
-				if (d.self) { off = clamp(off, -60, 60); }
-				d.el.style.setProperty(d.prop, off.toFixed(1) + 'px');
-				if (d.rot) { d.el.style.setProperty('--rot', (off / 40 * d.rot / 4).toFixed(2) + 'deg'); }
-			});
-			// The process cable draws with the scroll and un-draws going back up.
-			if (steps) {
-				var s = steps.getBoundingClientRect();
-				var prog = isPhone()
-					? clamp((vh * 0.75 - s.top) / Math.max(s.height, 1), 0, 1)
-					: clamp((vh * 0.85 - s.top) / (vh * 0.55), 0, 1);
-				steps.style.setProperty('--p', prog.toFixed(3));
-			}
+		// Phones only: the process cable draws as you scroll down and un-draws going back up.
+		if (canAnimate && steps && isPhone()) {
+			var st = steps.getBoundingClientRect();
+			steps.style.setProperty('--p', clamp((vh * 0.75 - st.top) / Math.max(st.height, 1), 0, 1).toFixed(3));
 		}
 		ticking = false;
 	}
 	window.addEventListener('scroll', function () {
 		if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
 	}, { passive: true });
-	window.addEventListener('resize', function () {
-		if (steps) { steps.style.setProperty('--run', (steps.offsetWidth + 80) + 'px'); }
-		onScroll();
-	});
-	if (steps) { steps.style.setProperty('--run', (steps.offsetWidth + 80) + 'px'); }
+	// How far the spark travels along the desktop cable.
+	function setRun() { if (steps && cable) { steps.style.setProperty('--run', (cable.offsetWidth + 10) + 'px'); } }
+	window.addEventListener('resize', function () { setRun(); onScroll(); });
+	setRun();
 
 	// Pause the slow looping touches while they're off-screen.
 	if ('IntersectionObserver' in window) {
@@ -242,7 +217,7 @@
 		var plan = [
 			['.me-quote__intro .me-h2, .me-quote__intro p', 'left', 0, 90],
 			['.me-quote__form', 'right', 120, 0],
-			['.me-about__title, .me-about__text > p, .me-about__buttons', '', 0, 70],
+			['.me-about__title, .me-about__text p', '', 0, 70],
 			['.me-about__badge', 'scale', 500, 0],
 			['.me-services__head', 'left', 0, 0],
 			['.me-service', '', 40, 90],
@@ -253,7 +228,8 @@
 			['.me-step', 'left', 120, 220],
 			['.me-reviews .me-h2, .me-reviews .me-placeholder, .me-reviews__live, .me-reviews__buttons', '', 0, 100],
 			['.me-contact .me-h2, .me-contact__intro p, .me-contact__intro .me-details, .me-contact__intro .wp-block-buttons', '', 0, 80],
-			['.me-contact__map', 'right', 150, 0]
+			['.me-contact__form', 'right', 120, 0],
+			['.me-contact__map', '', 0, 0]
 		];
 		var watch = [];
 		plan.forEach(function (p) {
