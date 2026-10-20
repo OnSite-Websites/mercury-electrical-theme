@@ -380,7 +380,22 @@
 	each('form[data-me-demo]', function (form) {
 		form.addEventListener('submit', function (e) {
 			e.preventDefault();
-			form.querySelector('.me-form__note').textContent = 'Preview only. The live form sends quote requests straight to Mitchell.';
+			var note = form.querySelector('.me-form__note');
+			var missing = [];
+			Array.prototype.forEach.call(form.querySelectorAll('[required]'), function (f) {
+				var bad = !f.value.trim() || (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim()));
+				f.setAttribute('aria-invalid', bad ? 'true' : 'false');
+				if (bad) { missing.push(f); }
+			});
+			if (missing.length) {
+				note.textContent = 'Please fill in your name, phone, email, suburb and the service you need.';
+				missing[0].focus();
+				return;
+			}
+			note.textContent = 'Preview only. The live form sends quote requests straight to Mitchell.';
+		});
+		form.addEventListener('input', function (e) {
+			if (e.target.getAttribute('aria-invalid') === 'true' && e.target.value.trim()) { e.target.setAttribute('aria-invalid', 'false'); }
 		});
 	});
 }());

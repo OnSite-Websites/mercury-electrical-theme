@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ME_VERSION', '1.0.1' );
+define( 'ME_VERSION', '1.0.2' );
 
 /**
  * Business details. Editable in Appearance → Customize → Business Details.
@@ -411,9 +411,9 @@ add_shortcode( 'me_quote_form', function ( $atts ) {
 	<form class="me-form<?php echo esc_attr( $stack ); ?>" data-me-demo action="#quote" method="post" novalidate>
 		<p class="me-field"><label for="<?php echo esc_attr( $f ); ?>name">Name <span aria-hidden="true">*</span></label><input id="<?php echo esc_attr( $f ); ?>name" name="name" type="text" autocomplete="name" required></p>
 		<p class="me-field"><label for="<?php echo esc_attr( $f ); ?>phone">Phone <span aria-hidden="true">*</span></label><input id="<?php echo esc_attr( $f ); ?>phone" name="phone" type="tel" autocomplete="tel" required></p>
-		<p class="me-field"><label for="<?php echo esc_attr( $f ); ?>email">Email</label><input id="<?php echo esc_attr( $f ); ?>email" name="email" type="email" autocomplete="email"></p>
-		<p class="me-field"><label for="<?php echo esc_attr( $f ); ?>suburb">Suburb</label><input id="<?php echo esc_attr( $f ); ?>suburb" name="suburb" type="text" autocomplete="address-level2"></p>
-		<p class="me-field me-field--service"><label for="<?php echo esc_attr( $f ); ?>service">What do you need done?</label><select id="<?php echo esc_attr( $f ); ?>service" name="service"><option value="">Choose a service</option><?php foreach ( me_services() as $s ) : ?><option><?php echo esc_html( $s ); ?></option><?php endforeach; ?></select></p>
+		<p class="me-field"><label for="<?php echo esc_attr( $f ); ?>email">Email <span aria-hidden="true">*</span></label><input id="<?php echo esc_attr( $f ); ?>email" name="email" type="email" autocomplete="email" required></p>
+		<p class="me-field"><label for="<?php echo esc_attr( $f ); ?>suburb">Suburb <span aria-hidden="true">*</span></label><input id="<?php echo esc_attr( $f ); ?>suburb" name="suburb" type="text" autocomplete="address-level2" required></p>
+		<p class="me-field me-field--service"><label for="<?php echo esc_attr( $f ); ?>service">What do you need done? <span aria-hidden="true">*</span></label><select id="<?php echo esc_attr( $f ); ?>service" name="service" required><option value="">Choose a service</option><?php foreach ( me_services() as $s ) : ?><option><?php echo esc_html( $s ); ?></option><?php endforeach; ?></select></p>
 		<p class="me-field me-field--msg"><label for="<?php echo esc_attr( $f ); ?>msg">Tell us about the job</label><textarea id="<?php echo esc_attr( $f ); ?>msg" name="message" rows="2"></textarea></p>
 		<p class="me-form__submit"><button type="submit" class="me-submit">Send It Through <span class="me-arrow" aria-hidden="true">→</span></button></p>
 		<p class="me-form__note" role="status" aria-live="polite"></p>

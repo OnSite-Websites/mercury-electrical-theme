@@ -4,7 +4,7 @@ Theme URI: https://mercuryelectrical.com.au/
 Author: OnSite Websites
 Author URI: https://onsitewebsites.com.au/
 Description: One-page custom theme for Mercury Electrical QLD, a residential electrician on the Fraser Coast. All page content is edited in Pages → Home with the standard WordPress block editor. Business details live in Appearance → Customize → Business Details.
-Version: 1.0.1
+Version: 1.0.2
 Requires at least: 6.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -126,9 +126,10 @@ strong{font-weight:700}
 .me-brand__badge{position:relative;display:flex;align-items:center;height:100%;padding:0 34px 0 0;background:var(--ink)}
 .me-brand__badge::before{content:"";position:absolute;top:0;bottom:0;right:100%;width:100vw;background:var(--ink)}
 .me-brand__badge::after{content:"";position:absolute;top:0;bottom:0;left:100%;width:30px;background:var(--ink);clip-path:polygon(0 0,100% 0,0 100%)}
-.me-brand__logo{width:54px;height:auto}
-.me-brand__name{display:flex;flex-direction:column;font-family:var(--display);font-size:25px;line-height:1;text-transform:uppercase;letter-spacing:.03em;margin-left:14px}
-.me-brand__sub{font-family:var(--body);font-weight:700;font-size:11px;letter-spacing:.22em;margin-top:4px}
+.me-brand__logo{width:68px;height:auto;flex:none}
+.me-brand,.me-brand__badge,.me-call{flex:none}
+.me-brand__name{display:flex;flex-direction:column;font-family:var(--display);font-size:31px;line-height:1;text-transform:uppercase;letter-spacing:.03em;margin-left:14px}
+.me-brand__sub{font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.2em;margin-top:5px}
 .me-nav{display:flex;align-items:center;margin-left:28px}
 .me-nav__list{display:flex;gap:30px;list-style:none;margin:0;padding:0}
 .me-nav__list a{color:inherit;text-decoration:none;font-weight:600;font-size:15.5px;position:relative;padding:6px 0;transition:color .45s}
@@ -152,8 +153,8 @@ strong{font-weight:700}
    Hero
    ========================================================================== */
 .me-hero{position:relative;overflow:hidden;background:var(--paper);--wl:max(var(--gutter),calc((100% - var(--wrap)) / 2));min-height:clamp(640px,92svh,800px);display:flex;align-items:center;padding:calc(var(--header-h) + 30px) 0 110px var(--wl)}
-.me-hero__photo{position:absolute;top:0;bottom:0;left:calc(var(--wl) + 660px);right:0;overflow:hidden;margin:0}
-.me-hero__photo img{position:absolute;left:0;top:-5%;width:100%;height:110%;max-width:none;object-fit:cover;object-position:0% 62%}
+.me-hero__photo{position:absolute;top:0;bottom:0;left:calc(var(--wl) + 660px);right:0;overflow:hidden;margin:0;background:var(--ink)}
+.me-hero__photo img{position:absolute;left:170px;top:-5%;width:calc(100% - 170px);height:110%;clip-path:polygon(32px 0,100% 0,100% 100%,0 100%);max-width:none;object-fit:cover;object-position:0% 62%}
 .me-bolt{position:absolute;display:block;pointer-events:none}
 .me-bolt__paper{fill:var(--paper)}
 .me-bolt__black{fill:var(--ink)}
@@ -217,6 +218,7 @@ strong{font-weight:700}
 .me-submit,.me-form--live .ff-btn-submit{background:var(--yellow)!important;color:var(--ink)!important;font:700 16.5px/1.2 var(--body)!important;min-height:46px;padding:12px 24px!important;border-radius:4px!important;border:0!important;box-shadow:0 14px 28px rgba(0,0,0,.35)!important}
 .me-form__note{grid-column:1/-1;margin:0!important;color:var(--yellow);font-weight:600;font-size:15px;min-height:0}
 .me-form__note:empty{display:none}
+.me-field [aria-invalid="true"]{border-color:#F08A5D;box-shadow:0 0 0 3px rgba(240,138,93,.35)}
 .me-form--live .ff-el-group{margin-bottom:16px}
 .me-form--live .ff-el-is-required.asterisk-right label::after{color:var(--yellow)}
 .me-form--live .ff-message-success{background:var(--ink-3);color:var(--paper);border:0;border-left:0;border-radius:4px;box-shadow:none}
@@ -224,7 +226,7 @@ strong{font-weight:700}
 /* ==========================================================================
    About (busy: photos + faint van bolt creeping in from the left edge)
    ========================================================================== */
-.me-about{background:var(--grain-dark),var(--paper);padding-top:clamp(80px,8vw,116px);padding-bottom:clamp(130px,12vw,170px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:clamp(40px,6vw,96px);align-items:center;overflow:hidden}
+.me-about{background:var(--grain-dark),var(--paper);padding-top:clamp(80px,8vw,116px);padding-bottom:clamp(84px,7.6vw,110px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:clamp(40px,6vw,96px);align-items:center;overflow:hidden}
 .me-side-bolt{position:absolute;left:0;top:-14%;bottom:-14%;width:clamp(150px,20vw,300px);opacity:.14;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,#000 30%,transparent);mask-image:linear-gradient(90deg,#000 30%,transparent)}
 .me-side-bolt svg{width:100%;height:100%;display:block}
 .me-about__text{position:relative;max-width:640px}
@@ -245,7 +247,7 @@ strong{font-weight:700}
 /* ==========================================================================
    Services (calm background: angled lighter panels, slanted top edge)
    ========================================================================== */
-.me-services{margin-top:-70px!important;background:var(--grain-dark),var(--paper-2);clip-path:polygon(0 70px,100% 0,100% 100%,0 100%);padding-top:clamp(130px,11vw,160px);padding-bottom:clamp(80px,8vw,110px);overflow:hidden}
+.me-services{margin-top:-70px!important;background:var(--grain-dark),var(--paper-2);clip-path:polygon(0 70px,100% 0,100% 100%,0 100%);padding-top:clamp(100px,8vw,116px);padding-bottom:clamp(80px,8vw,110px);overflow:hidden}
 .me-services::before,.me-services::after{content:"";position:absolute;pointer-events:none;background:rgba(255,253,248,.45);transform:skewX(-18deg)}
 .me-services::before{top:0;bottom:0;right:-6%;width:24%}
 .me-services::after{top:0;bottom:0;right:21%;width:4%;background:rgba(255,253,248,.3)}
@@ -472,9 +474,9 @@ strong{font-weight:700}
 	.me-header__inner{gap:10px}
 	.me-brand__badge{padding-right:22px}
 	.me-brand__badge::after{width:22px}
-	.me-brand__logo{width:44px}
-	.me-brand__name{font-size:21px;margin-left:10px}
-	.me-brand__sub{font-size:10px;letter-spacing:.2em}
+	.me-brand__logo{width:52px}
+	.me-brand__name{font-size:25px;margin-left:10px}
+	.me-brand__sub{font-size:11px;letter-spacing:.18em}
 	.me-header.is-scrolled{transform:translateY(-10px)}
 	.me-header.is-scrolled .me-header__inner{transform:translateY(5px)}
 	.me-header.is-scrolled .me-brand{transform:scale(.92)}
@@ -502,7 +504,7 @@ strong{font-weight:700}
 	.me-hero__buttons{margin-top:26px!important}
 	.me-hero{--ph:clamp(300px,60vw,540px);--bh:clamp(100px,26vw,200px)}
 	.me-hero__photo{position:relative;left:auto;right:auto;top:auto;bottom:auto;height:var(--ph);margin-top:calc(var(--bh) * .3)!important}
-	.me-hero__photo img{position:absolute;top:0;height:100%;object-position:30% 60%;transform:none}
+	.me-hero__photo img{position:absolute;left:0;width:100%;top:0;height:100%;object-position:0% 60%;transform:none;clip-path:none}
 	.me-bolt--v{display:none}
 	.me-watermark--hero{left:auto;right:-60px;bottom:auto;top:calc(var(--header-h) + 10px);width:clamp(220px,40vw,380px)}
 	.me-bolt--h{display:block;left:0;right:0;width:100%;top:auto;bottom:calc(var(--ph) - var(--bh) * .62);height:var(--bh);z-index:1}
@@ -529,14 +531,16 @@ strong{font-weight:700}
 }
 @media (max-width:767px){
 	body{font-size:16.5px}
-	.me-brand__name{font-size:20px}
+	.me-brand__logo{width:46px}
+	.me-brand__name{font-size:22px}
 	.me-brand__sub{letter-spacing:.1em;white-space:nowrap;font-size:9.5px}
-	.me-call__num{display:none}
+	.me-brand__badge{padding-right:16px}
+	.me-brand__badge::after{width:18px}
+	.me-call{gap:7px;padding:9px 11px;font-size:15px}
 	.me-trust__list{padding:18px 22px;gap:14px 12px}
 	.me-trust__list li{grid-template-columns:1fr;row-gap:4px;align-items:start;align-content:start}
 	.me-trust__list li::before{grid-row:auto;width:24px;height:24px}
 	.me-trust__list strong{font-size:17px;white-space:nowrap}
-	.me-call__short{display:inline}
 	.me-hero__title{font-size:clamp(44px,12.6vw,58px)}
 	.me-form,.me-form--stack{grid-template-columns:1fr}
 	.me-field--wide{grid-column:auto}
@@ -550,7 +554,8 @@ strong{font-weight:700}
 	.me-about__badge{top:18px;padding:10px 14px 11px}
 	.me-about__num{font-size:38px}
 	.me-about__label{font-size:12.5px}
-	.me-services{clip-path:polygon(0 40px,100% 0,100% 100%,0 100%);margin-top:-40px!important;padding-top:100px}
+	.me-services{clip-path:polygon(0 40px,100% 0,100% 100%,0 100%);margin-top:-40px!important;padding-top:84px}
+	.me-about{padding-bottom:72px}
 	.me-services__grid{grid-template-columns:1fr;gap:18px}
 	.me-service{flex-direction:column}
 	.me-service__img{width:auto;aspect-ratio:16/10;clip-path:polygon(0 0,100% 0,100% 88%,0 100%)}
@@ -576,10 +581,22 @@ strong{font-weight:700}
 	.me-side-bolt{opacity:.1}
 	.me-watermark{width:300px}
 }
-@media (max-width:380px){
-	.me-brand__name{font-size:18px}
-	.me-brand__sub{display:none}
-	.me-call{padding:10px 11px}
+@media (max-width:419px){
+	.me-header__inner{gap:8px}
+	.me-brand__logo{width:44px}
+	.me-brand__badge{padding-right:10px}
+	.me-brand__badge::after{width:14px}
+	.me-brand__name{font-size:21px;margin-left:12px}
+	.me-brand__sub{font-size:8.5px;letter-spacing:.08em}
+	.me-call{gap:6px;padding:9px 9px;font-size:14px}
+	.me-call svg{width:17px;height:17px}
+	.me-menu-btn{width:42px;height:42px}
+}
+@media (max-width:379px){
+	.me-brand__name{display:none}
+	.me-brand__logo{width:50px}
+	.me-brand__badge{padding-right:14px}
+	.me-call{padding:9px 12px;font-size:15px}
 }
 @media (hover:none){
 	.me-zoom::after{opacity:1;transform:none}
