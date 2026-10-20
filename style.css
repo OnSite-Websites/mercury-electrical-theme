@@ -4,7 +4,7 @@ Theme URI: https://mercuryelectrical.com.au/
 Author: OnSite Websites
 Author URI: https://onsitewebsites.com.au/
 Description: One-page custom theme for Mercury Electrical QLD, a residential electrician on the Fraser Coast. All page content is edited in Pages → Home with the standard WordPress block editor. Business details live in Appearance → Customize → Business Details.
-Version: 1.0.3
+Version: 1.0.4
 Requires at least: 6.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -204,13 +204,12 @@ strong{font-weight:700}
 .me-field--wide{grid-column:span 2}
 .me-field--full{grid-column:1/-1}
 .me-form--stack{grid-template-columns:repeat(2,minmax(0,1fr))}
-.me-form--stack .me-form__submit{grid-column:1/-1}
-.me-form--stack .me-field--service,.me-form--stack .me-field--msg{grid-column:auto}
+.me-form--stack .me-field--service,.me-form--stack .me-field--msg,.me-form--stack .me-form__submit{grid-column:1/-1}
 .me-field label,.me-form--live .ff-el-input--label label{font-size:13.5px;font-weight:600;color:var(--on-ink)}
 .me-field label span{color:var(--yellow)}
 .me-field input,.me-field select,.me-field textarea,.me-form--live .ff-el-form-control{width:100%;min-height:46px;border:2px solid transparent;border-radius:4px;background:var(--paper);color:var(--ink);font:500 16px/1.4 var(--body);padding:10px 12px;transition:border-color .2s,box-shadow .2s}
 .me-field textarea,.me-form--live textarea.ff-el-form-control{min-height:46px;height:46px;resize:vertical}
-.me-form--stack .me-field textarea{height:46px}
+.me-form--stack .me-field textarea{height:96px}
 .me-field--msg{grid-column:span 2}
 .me-field input:focus,.me-field select:focus,.me-field textarea:focus,.me-form--live .ff-el-form-control:focus{outline:none;border-color:var(--yellow);box-shadow:0 0 0 4px rgba(244,188,28,.3)}
 .me-form__submit{display:flex;justify-content:flex-end;margin:0!important}
@@ -545,14 +544,12 @@ strong{font-weight:700}
 	.me-trust__list li::before{grid-row:auto;width:24px;height:24px}
 	.me-trust__list strong{font-size:17px;white-space:nowrap}
 	.me-hero__title{font-size:clamp(44px,12.6vw,58px)}
-	.me-form{grid-template-columns:1fr}
-	.me-form--stack{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 10px}
-	.me-form--stack .me-field--service,.me-form--stack .me-field--msg{grid-column:1/-1}
-	.me-form--stack .me-field textarea{height:70px}
+	.me-form,.me-form--stack{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 10px}
+	.me-field--service,.me-field--msg,.me-form__submit{grid-column:1/-1}
+	.me-field textarea,.me-form--stack .me-field textarea{height:70px}
 	.me-field--wide{grid-column:auto}
 	.me-form__submit{justify-content:stretch}
 	.me-form__submit .me-submit,.me-form--stack .me-form__submit .me-submit{width:100%}
-	.me-field textarea{height:84px}
 	.me-hero__buttons .wp-block-button{flex:1 1 100%}
 	.me-hero__buttons .wp-block-button__link{width:100%}
 	.me-hero__photo{margin-top:calc(var(--bh) * .3 + 36px)!important}
