@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ME_VERSION', '1.0.5' );
+define( 'ME_VERSION', '1.0.6' );
 
 /**
  * Business details. Editable in Appearance → Customize → Business Details.
@@ -101,6 +101,12 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_dequeue_style( 'global-styles' );
 	}
 }, 20 );
+
+// Newer WordPress versions print each core block's own CSS separately, after the theme's styles,
+// which overrides the theme (e.g. it squashed the hero photo). The theme styles every block itself,
+// so ask for the single combined block stylesheet instead (dequeued on the home page above).
+add_filter( 'should_load_separate_core_block_assets', '__return_false' );
+add_filter( 'should_load_block_assets_on_demand', '__return_false' );
 
 // Remove emoji scripts for speed.
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
