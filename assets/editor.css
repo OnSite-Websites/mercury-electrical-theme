@@ -1,0 +1,18 @@
+/* Keeps the block editor close to the live site. */
+@font-face{font-family:"Anton";font-weight:400;src:url(fonts/anton-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Work Sans";font-weight:400;src:url(fonts/work-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Work Sans";font-weight:700;src:url(fonts/work-sans-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Permanent Marker";font-weight:400;src:url(fonts/permanent-marker-latin-400-normal.woff2) format("woff2")}
+body{font-family:"Work Sans",system-ui,sans-serif;color:#2A251D;font-size:18px;line-height:1.7}
+h1,h2,h3,.me-hero__title{font-family:"Anton",Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;color:#1B1813}
+.me-hero__title{font-size:56px}
+.me-hero__title strong,.me-mark{background:linear-gradient(transparent 14%,#F4BC1C 14%,#F4BC1C 94%,transparent 94%);font-weight:400;color:inherit}
+.me-hero__areas,.me-about__label,.me-services__note,.me-ba__caption{font-family:"Permanent Marker",cursive}
+.me-hero,.me-reviews,.me-about{padding:24px;border-radius:6px;background:#F5F2EA}
+.me-trust,.me-process{padding:24px;border-radius:6px;background:#F4BC1C}
+.me-quote,.me-work,.me-contact{padding:24px;border-radius:6px;background:#1B1813;color:#DAD3C5}
+.me-quote h2,.me-work h2,.me-contact h2{color:#F5F2EA}
+.me-services{padding:24px;border-radius:6px;background:#ECE5D6}
+/* Keep big photos manageable while editing */
+.me-hero__photo img,.me-about__main img,.me-about__trench img{max-height:320px;width:auto;object-fit:cover}
+.me-service__img img,.me-ba img{max-height:220px;width:100%;object-fit:cover}

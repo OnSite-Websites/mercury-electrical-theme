@@ -1,0 +1,149 @@
+[
+ {
+  "key": "hero",
+  "file": "mercury-electrical-van-maryborough.webp",
+  "alt": "Mercury Electrical QLD van with its black and yellow lightning livery parked on a lawn in Maryborough",
+  "id": 990001,
+  "url": "https://me-img.invalid/hero"
+ },
+ {
+  "key": "about-main",
+  "file": "mitchell-mercury-electrical-van-cable-trench.webp",
+  "alt": "Mitchell from Mercury Electrical QLD standing beside his van next to a freshly dug cable trench",
+  "id": 990002,
+  "url": "https://me-img.invalid/about-main"
+ },
+ {
+  "key": "about-trench",
+  "file": "underground-power-trench-modular-home.webp",
+  "alt": "Trench dug through a garden to run underground power to a new modular home",
+  "id": 990003,
+  "url": "https://me-img.invalid/about-trench"
+ },
+ {
+  "key": "svc-sheds",
+  "file": "underground-cable-trench-queenslander-home.webp",
+  "alt": "Underground cable trench and conduit running across the yard of a Queenslander home",
+  "id": 990004,
+  "url": "https://me-img.invalid/svc-sheds"
+ },
+ {
+  "key": "svc-board",
+  "file": "shed-sub-board-circuit-breakers-power-point.webp",
+  "alt": "New sub-board with circuit breakers and a double power point on a shed wall",
+  "id": 990005,
+  "url": "https://me-img.invalid/svc-board"
+ },
+ {
+  "key": "svc-points",
+  "file": "weatherproof-outdoor-double-power-point.webp",
+  "alt": "Weatherproof double power point mounted on a brick wall",
+  "id": 990006,
+  "url": "https://me-img.invalid/svc-points"
+ },
+ {
+  "key": "svc-lights",
+  "file": "glass-pendant-light-ceiling-rose.webp",
+  "alt": "Glass pendant light hanging from a decorative ceiling rose",
+  "id": 990007,
+  "url": "https://me-img.invalid/svc-lights"
+ },
+ {
+  "key": "svc-aircon",
+  "file": "split-system-air-conditioner-wall.webp",
+  "alt": "Split system air conditioner mounted high on a white wall",
+  "id": 990008,
+  "url": "https://me-img.invalid/svc-aircon"
+ },
+ {
+  "key": "svc-ev",
+  "file": "home-ev-charger-brick-wall-driveway.webp",
+  "alt": "Wall-mounted EV charger on a brick wall charging a car in a driveway",
+  "id": 990009,
+  "url": "https://me-img.invalid/svc-ev"
+ },
+ {
+  "key": "svc-smoke",
+  "file": "ceiling-mounted-smoke-alarm.webp",
+  "alt": "Smoke alarm fitted to a ceiling",
+  "id": 990010,
+  "url": "https://me-img.invalid/svc-smoke"
+ },
+ {
+  "key": "svc-fault",
+  "file": "multimeter-electrical-fault-finding.webp",
+  "alt": "Yellow multimeter with test leads held in a hand",
+  "id": 990011,
+  "url": "https://me-img.invalid/svc-fault"
+ },
+ {
+  "key": "ba-before",
+  "file": "exterior-wall-lights-before.webp",
+  "alt": "Before: the back of a two-storey home with no outdoor wall lights",
+  "id": 990012,
+  "url": "https://me-img.invalid/ba-before"
+ },
+ {
+  "key": "ba-after",
+  "file": "exterior-wall-lights-after.webp",
+  "alt": "After: the same home with new outdoor wall lights beside the garage and doorway",
+  "id": 990013,
+  "url": "https://me-img.invalid/ba-after"
+ },
+ {
+  "key": "g1",
+  "file": "mercury-electrical-van-new-home-build.webp",
+  "alt": "Mercury Electrical QLD van parked at a new home build at dusk",
+  "id": 990014,
+  "url": "https://me-img.invalid/g1"
+ },
+ {
+  "key": "g2",
+  "file": "led-downlights-installed-in-eaves.webp",
+  "alt": "LED downlights installed in the eaves along the side of a brick home",
+  "id": 990015,
+  "url": "https://me-img.invalid/g2"
+ },
+ {
+  "key": "g3",
+  "file": "white-ceiling-fan-installed.webp",
+  "alt": "White three-blade ceiling fan installed in a bright room",
+  "id": 990016,
+  "url": "https://me-img.invalid/g3"
+ },
+ {
+  "key": "g4",
+  "file": "three-gang-light-switch-installed.webp",
+  "alt": "New three-gang light switch on a painted wall",
+  "id": 990017,
+  "url": "https://me-img.invalid/g4"
+ },
+ {
+  "key": "g5",
+  "file": "led-batten-light-installed.webp",
+  "alt": "LED batten light installed on a garage ceiling",
+  "id": 990018,
+  "url": "https://me-img.invalid/g5"
+ },
+ {
+  "key": "g6",
+  "file": "exterior-light-under-eaves.webp",
+  "alt": "Outdoor light fitted under the eaves of a home",
+  "id": 990019,
+  "url": "https://me-img.invalid/g6"
+ },
+ {
+  "key": "g7",
+  "file": "oyster-ceiling-light-installed.webp",
+  "alt": "New oyster ceiling light in a sunroom",
+  "id": 990020,
+  "url": "https://me-img.invalid/g7"
+ },
+ {
+  "key": "g8",
+  "file": "cage-pendant-light-dining-room.webp",
+  "alt": "Black cage pendant light hanging over a dining table",
+  "id": 990021,
+  "url": "https://me-img.invalid/g8"
+ }
+]
