@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ME_VERSION', '1.0.4' );
+define( 'ME_VERSION', '1.0.5' );
 
 /**
  * Business details. Editable in Appearance → Customize → Business Details.
@@ -556,7 +556,7 @@ function me_run_setup( $force = false ) {
 	if ( get_transient( 'me_setup_lock' ) ) {
 		return;
 	}
-	set_transient( 'me_setup_lock', 1, 5 * MINUTE_IN_SECONDS );
+	set_transient( 'me_setup_lock', 1, 2 * MINUTE_IN_SECONDS );
 	if ( function_exists( 'set_time_limit' ) ) {
 		@set_time_limit( 180 ); // phpcs:ignore
 	}
@@ -640,6 +640,15 @@ function me_run_setup( $force = false ) {
 	delete_transient( 'me_setup_lock' );
 }
 add_action( 'after_switch_theme', 'me_run_setup' );
+
+// If the theme was activated without the setup running (e.g. switched by a script or host tool),
+// finish it on the next page load. The import skips photos already in the Media Library, so a
+// request that runs out of time just carries on where it stopped.
+add_action( 'init', function () {
+	if ( ! get_option( 'me_setup_done' ) && ! wp_doing_ajax() && ! wp_doing_cron() ) {
+		me_run_setup();
+	}
+}, 20 );
 
 // Lets the setup be re-run from the dashboard if the pages are ever deleted.
 add_action( 'admin_notices', function () {
