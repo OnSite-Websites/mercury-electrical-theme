@@ -4,7 +4,7 @@ Theme URI: https://mercuryelectrical.com.au/
 Author: OnSite Websites
 Author URI: https://onsitewebsites.com.au/
 Description: One-page custom theme for Mercury Electrical QLD, a residential electrician on the Fraser Coast. All page content is edited in Pages → Home with the standard WordPress block editor. Business details live in Appearance → Customize → Business Details.
-Version: 1.0.9
+Version: 1.0.10
 Requires at least: 6.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -346,6 +346,7 @@ strong{font-weight:700}
 .me-rating--reviews .me-g{width:24px;height:24px}
 .me-rating__score{font-family:var(--display);font-size:28px;font-weight:400;line-height:1}
 .me-rating--hero{margin-top:22px;padding:11px 20px;background:var(--card);border-radius:999px;box-shadow:0 10px 26px rgba(27,24,19,.12);font-size:15px;font-weight:500;text-decoration:none;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.me-rating--hero{flex-wrap:nowrap;white-space:nowrap;width:max-content;max-width:100%}
 .me-rating--hero:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(27,24,19,.16)}
 .me-rating--hero .me-stars svg{width:17px;height:17px}
 .me-rating__google{display:inline-flex;align-items:center;gap:5px;font-weight:700}
@@ -602,6 +603,9 @@ strong{font-weight:700}
 	.me-watermark{width:300px}
 }
 @media (max-width:419px){
+	.me-rating--hero{gap:6px;padding:10px 15px;font-size:13.5px}
+	.me-rating--hero .me-stars svg{width:14px;height:14px}
+	.me-rating--hero .me-g{width:17px;height:17px}
 	.me-header__inner{gap:8px}
 	.me-brand__logo{width:44px}
 	.me-brand__badge{padding-right:10px}
