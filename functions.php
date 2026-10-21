@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ME_VERSION', '1.0.8' );
+define( 'ME_VERSION', '1.0.9' );
 
 /**
  * Business details. Editable in Appearance → Customize → Business Details.
@@ -252,7 +252,7 @@ add_action( 'wp_head', function () {
 	if ( ! has_site_icon() ) {
 		$img = get_template_directory_uri() . '/assets/img/';
 		echo '<link rel="icon" href="' . esc_url( $img . 'favicon.ico' ) . '" sizes="any">' . "\n";
-		echo '<link rel="icon" type="image/png" href="' . esc_url( $img . 'favicon-512.png' ) . '">' . "\n";
+		echo '<link rel="icon" type="image/png" href="' . esc_url( $img . 'favicon-transparent-512.png' ) . '">' . "\n";
 		echo '<link rel="apple-touch-icon" href="' . esc_url( $img . 'apple-touch-icon.png' ) . '">' . "\n";
 	}
 	// Meta description, unless Yoast SEO is handling it.
@@ -433,11 +433,70 @@ add_shortcode( 'me_licence', function () {
 	return '<span class="me-licence">' . esc_html( me_opt( 'licence' ) ) . '</span>';
 } );
 
-/** [me_reviews] Trustindex once connected, otherwise an obvious placeholder. */
+/**
+ * Live Google rating from the Trustindex plugin (it saves the profile's
+ * review count and score whenever it pulls reviews from Google).
+ */
+function me_review_stats() {
+	$d = get_option( 'trustindex-google-page-details' );
+	if ( ! is_array( $d ) || empty( $d['rating_number'] ) ) {
+		return null;
+	}
+	return array(
+		'count' => (int) $d['rating_number'],
+		'score' => round( (float) $d['rating_score'], 1 ),
+	);
+}
+
+function me_stars_svg() {
+	$star = '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 1.4l2.65 5.47 6 .83-4.37 4.2 1.06 5.97L10 15.02l-5.34 2.85 1.06-5.97L1.35 7.7l6-.83z"/></svg>';
+	return '<span class="me-stars" aria-hidden="true">' . str_repeat( $star, 5 ) . '</span>';
+}
+
+function me_google_g_svg() {
+	return '<svg class="me-g" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.5 0 20.1 0 24s1 7.5 2.7 10.7l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.4 2.3-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>';
+}
+
+/** Rating wording, e.g. "32 5-star reviews" (only claims 5-star when the score really is 5.0). */
+function me_rating_label( $s ) {
+	if ( $s['score'] >= 5 ) {
+		return sprintf( '%d 5-star reviews', $s['count'] );
+	}
+	return sprintf( 'Rated %s from %d reviews', number_format( $s['score'], 1 ), $s['count'] );
+}
+
+/** Pill badge in the hero: stars, review count and "Google", linking to the profile. */
+function me_hero_rating_badge() {
+	$s = me_review_stats();
+	if ( ! $s ) {
+		return '';
+	}
+	$url  = me_opt( 'google_url' );
+	$text = me_rating_label( $s );
+	$sr   = $text . ' on Google, rated ' . number_format( $s['score'], 1 ) . ' out of 5';
+	$in   = me_stars_svg() . '<span class="me-rating__text">' . esc_html( $text ) . ' on</span><span class="me-rating__google">' . me_google_g_svg() . 'Google</span><span class="screen-reader-text">' . esc_html( $sr ) . '</span>';
+	$tag  = $url ? 'a href="' . esc_url( $url ) . '" target="_blank" rel="noopener"' : 'div';
+	return '<' . $tag . ' class="me-rating me-rating--hero">' . $in . '</' . ( $url ? 'a' : 'div' ) . '>';
+}
+
+/** Puts the rating badge under the hero buttons. */
+add_filter( 'render_block', function ( $html, $block ) {
+	if ( is_admin() || 'core/buttons' !== $block['blockName'] || empty( $block['attrs']['className'] ) || false === strpos( $block['attrs']['className'], 'me-hero__buttons' ) ) {
+		return $html;
+	}
+	return $html . me_hero_rating_badge();
+}, 10, 2 );
+
+/** [me_reviews] Trustindex once connected (with the live rating above it), otherwise an obvious placeholder. */
 add_shortcode( 'me_reviews', function () {
 	$code = me_opt( 'reviews_code' );
 	if ( $code ) {
-		return '<div class="me-reviews__live">' . do_shortcode( $code ) . '</div>';
+		$s    = me_review_stats();
+		$head = '';
+		if ( $s ) {
+			$head = '<p class="me-rating me-rating--reviews">' . me_google_g_svg() . '<span class="me-rating__score">' . esc_html( number_format( $s['score'], 1 ) ) . '</span>' . me_stars_svg() . '<span class="me-rating__text">' . esc_html( me_rating_label( $s ) ) . ' on Google</span><span class="screen-reader-text">Rated ' . esc_html( number_format( $s['score'], 1 ) ) . ' out of 5</span></p>';
+		}
+		return $head . '<div class="me-reviews__live">' . do_shortcode( $code ) . '</div>';
 	}
 	return '<div class="me-placeholder me-placeholder--reviews"><p class="me-placeholder__title">Google reviews will appear here</p><p>This spot shows real reviews from the Mercury Electrical QLD Google Business Profile once it is connected. Nothing here is written by us.</p></div>';
 } );
@@ -671,6 +730,12 @@ add_action( 'admin_init', function () {
 		exit;
 	}
 } );
+
+/** Tab icon: the helmet with no box behind it (overrides the uploaded site icon). */
+add_filter( 'get_site_icon_url', function ( $url, $size ) {
+	$file = ( $size && $size <= 64 ) ? 'favicon-64.png' : 'favicon-transparent-512.png';
+	return get_template_directory_uri() . '/assets/img/' . $file . '?v=' . ME_VERSION;
+}, 10, 2 );
 
 add_filter( 'body_class', function ( $classes ) {
 	$classes[] = is_front_page() ? 'me-is-home' : 'me-is-inner';

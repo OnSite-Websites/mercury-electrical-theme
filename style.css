@@ -4,7 +4,7 @@ Theme URI: https://mercuryelectrical.com.au/
 Author: OnSite Websites
 Author URI: https://onsitewebsites.com.au/
 Description: One-page custom theme for Mercury Electrical QLD, a residential electrician on the Fraser Coast. All page content is edited in Pages → Home with the standard WordPress block editor. Business details live in Appearance → Customize → Business Details.
-Version: 1.0.8
+Version: 1.0.9
 Requires at least: 6.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -196,7 +196,7 @@ strong{font-weight:700}
 .me-watermark{position:absolute;pointer-events:none;width:440px;height:auto;opacity:.05;z-index:0}
 .me-watermark--quote{left:calc(var(--pad) - 30px);top:calc(var(--trust-h,110px) / 2 + 22px);bottom:22px;width:auto;height:calc(100% - var(--trust-h,110px) / 2 - 44px);opacity:.06}
 .me-watermark--hero{left:-110px;bottom:-110px;width:400px;opacity:.06}
-.me-watermark--reviews{right:calc(var(--pad) + 20px);top:50%;margin-top:-150px;width:320px;opacity:.08;filter:invert(1) brightness(.2)}
+.me-watermark--reviews{right:calc(var(--pad) + 10px);top:28px;width:270px;opacity:.08;filter:invert(1) brightness(.2)}
 
 /* Quote form (stand-in and the live Fluent Forms form share these looks) */
 .me-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 14px;margin:0;align-items:end}
@@ -338,6 +338,18 @@ strong{font-weight:700}
 .me-placeholder__title{font-family:var(--display);font-size:25px;text-transform:uppercase;line-height:1.1;color:var(--ink);margin-bottom:.4em!important}
 .me-placeholder p{color:var(--muted)}
 .me-reviews__live{position:relative}
+.me-rating{display:inline-flex;align-items:center;flex-wrap:wrap;gap:8px;color:var(--ink);font-weight:600;line-height:1.2}
+.me-stars{display:inline-flex;gap:2px}
+.me-stars svg{width:18px;height:18px;fill:var(--yellow)}
+.me-g{width:20px;height:20px;flex:0 0 auto}
+.me-rating--reviews{position:relative;margin:-14px 0 24px!important;font-size:16px}
+.me-rating--reviews .me-g{width:24px;height:24px}
+.me-rating__score{font-family:var(--display);font-size:28px;font-weight:400;line-height:1}
+.me-rating--hero{margin-top:22px;padding:11px 20px;background:var(--card);border-radius:999px;box-shadow:0 10px 26px rgba(27,24,19,.12);font-size:15px;font-weight:500;text-decoration:none;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.me-rating--hero:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(27,24,19,.16)}
+.me-rating--hero .me-stars svg{width:17px;height:17px}
+.me-rating__google{display:inline-flex;align-items:center;gap:5px;font-weight:700}
+.screen-reader-text{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .me-reviews__buttons{position:relative;margin-top:34px!important}
 
 /* ==========================================================================
@@ -426,17 +438,18 @@ strong{font-weight:700}
 .me-anim .me-hero__title .me-word{display:inline-block;transform:translateY(108%);transition:transform .7s var(--ease);transition-delay:calc(var(--i) * 70ms + 80ms)}
 .me-anim .me-hero__title strong::before,.me-anim .me-mark::before{transform:skewX(-12deg) scaleX(0);transition:transform .6s var(--ease) .1s}
 .me-anim .me-hero__title strong::before{transition-delay:.62s}
-.me-anim .me-hero__areas,.me-anim .me-hero__lead,.me-anim .me-hero__buttons{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.me-anim .me-hero__areas,.me-anim .me-hero__lead,.me-anim .me-hero__buttons,.me-anim .me-rating--hero{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .me-anim .me-hero__areas{transition-delay:.05s}
 .me-anim .me-hero__lead{transition-delay:.5s}
 .me-anim .me-hero__buttons{transition-delay:.62s}
+.me-anim .me-rating--hero{transition-delay:.72s}
 .me-anim .me-bolt--v .me-bolt__main,.me-anim .me-bolt--v .me-bolt__thin,.me-anim .me-bolt--v .me-bolt__black{transform:translateY(-40px);opacity:0;transition:transform .8s var(--ease),opacity .5s ease}
 .me-anim .me-bolt--v .me-bolt__thin{transition-delay:.12s}
 .me-anim .me-bolt--v .me-bolt__main{transition-delay:.06s}
 .me-anim .me-trust__list{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease) .75s,transform .6s var(--ease) .75s}
 .me-hero-go .me-hero__title .me-word{transform:none}
 .me-hero-go .me-hero__title strong::before{transform:skewX(-12deg) scaleX(1)}
-.me-hero-go .me-hero__areas,.me-hero-go .me-hero__lead,.me-hero-go .me-hero__buttons,.me-hero-go .me-trust__list{opacity:1;transform:none}
+.me-hero-go .me-hero__areas,.me-hero-go .me-hero__lead,.me-hero-go .me-hero__buttons,.me-hero-go .me-rating--hero,.me-hero-go .me-trust__list{opacity:1;transform:none}
 .me-hero-go .me-bolt--v .me-bolt__main,.me-hero-go .me-bolt--v .me-bolt__thin,.me-hero-go .me-bolt--v .me-bolt__black{transform:none;opacity:1}
 .me-mark.is-in::before{transform:skewX(-12deg) scaleX(1)}
 
@@ -519,7 +532,7 @@ strong{font-weight:700}
 	.me-trust__list strong{font-size:19px}
 	.me-quote{grid-template-columns:1fr;gap:22px;margin-top:calc(var(--trust-h,160px) / -2)!important;padding-top:calc(var(--trust-h,160px) / 2 + 44px);padding-bottom:56px}
 	.me-watermark--quote{left:auto;right:-40px;top:calc(var(--trust-h,160px) / 2 + 20px);bottom:auto;width:220px}
-	.me-watermark--reviews{top:auto;margin-top:0;bottom:-40px;right:-40px;width:240px}
+	.me-watermark--reviews{top:24px;right:-24px;width:170px}
 	.me-about{grid-template-columns:1fr}
 	.me-about__media{max-width:520px;width:100%}
 	.me-work{grid-template-columns:1fr;gap:40px}
@@ -616,7 +629,7 @@ strong{font-weight:700}
 @media (prefers-reduced-motion:reduce){
 	html{scroll-behavior:auto}
 	*,*::before,*::after{animation:none!important;transition:none!important}
-	.me-anim .me-r,.me-anim .me-hero__areas,.me-anim .me-hero__lead,.me-anim .me-hero__buttons,.me-anim .me-trust__list,.me-anim .me-bolt polygon{opacity:1!important;transform:none!important}
+	.me-anim .me-r,.me-anim .me-hero__areas,.me-anim .me-hero__lead,.me-anim .me-hero__buttons,.me-anim .me-rating--hero,.me-anim .me-trust__list,.me-anim .me-bolt polygon{opacity:1!important;transform:none!important}
 	.me-anim .me-hero__title .me-word{transform:none!important}
 	.me-anim .me-wipe{display:none}
 	.me-mark::before,.me-hero__title strong::before{transform:skewX(-12deg)!important}
