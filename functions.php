@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ME_VERSION', '1.0.6' );
+define( 'ME_VERSION', '1.0.7' );
 
 /**
  * Business details. Editable in Appearance → Customize → Business Details.
