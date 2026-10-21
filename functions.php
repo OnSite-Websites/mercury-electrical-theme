@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ME_VERSION', '1.0.10' );
+define( 'ME_VERSION', '1.0.11' );
 
 /**
  * Business details. Editable in Appearance → Customize → Business Details.
@@ -356,7 +356,7 @@ function me_bolt_side() {
 
 /** Big faded helmet mark used as a corner watermark. */
 function me_watermark( $mod = '' ) {
-	return '<img class="me-watermark' . ( $mod ? ' me-watermark--' . esc_attr( $mod ) : '' ) . '" src="' . esc_url( get_template_directory_uri() . '/assets/img/logo-icon.webp' ) . '" width="301" height="290" alt="" aria-hidden="true" loading="lazy" decoding="async">';
+	return '<img class="me-watermark' . ( $mod ? ' me-watermark--' . esc_attr( $mod ) : '' ) . '" src="' . esc_url( get_template_directory_uri() . '/assets/img/' . ( 'reviews' === $mod ? 'logo-icon-dark.webp' : 'logo-icon.webp' ) ) . '" width="301" height="290" alt="" aria-hidden="true" loading="lazy" decoding="async">';
 }
 
 /**

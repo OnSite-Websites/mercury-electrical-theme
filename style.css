@@ -4,7 +4,7 @@ Theme URI: https://mercuryelectrical.com.au/
 Author: OnSite Websites
 Author URI: https://onsitewebsites.com.au/
 Description: One-page custom theme for Mercury Electrical QLD, a residential electrician on the Fraser Coast. All page content is edited in Pages → Home with the standard WordPress block editor. Business details live in Appearance → Customize → Business Details.
-Version: 1.0.10
+Version: 1.0.11
 Requires at least: 6.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -196,7 +196,7 @@ strong{font-weight:700}
 .me-watermark{position:absolute;pointer-events:none;width:440px;height:auto;opacity:.05;z-index:0}
 .me-watermark--quote{left:calc(var(--pad) - 30px);top:calc(var(--trust-h,110px) / 2 + 22px);bottom:22px;width:auto;height:calc(100% - var(--trust-h,110px) / 2 - 44px);opacity:.06}
 .me-watermark--hero{left:-110px;bottom:-110px;width:400px;opacity:.06}
-.me-watermark--reviews{right:calc(var(--pad) + 10px);top:28px;width:270px;opacity:.08;filter:invert(1) brightness(.2)}
+.me-watermark--reviews{right:calc(var(--pad) + 10px);top:28px;width:270px;opacity:.08}
 
 /* Quote form (stand-in and the live Fluent Forms form share these looks) */
 .me-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 14px;margin:0;align-items:end}
@@ -337,7 +337,12 @@ strong{font-weight:700}
 .me-placeholder{position:relative;border:2px dashed rgba(27,24,19,.35);border-radius:6px;padding:36px clamp(20px,4vw,48px);background:rgba(255,253,248,.7);max-width:820px}
 .me-placeholder__title{font-family:var(--display);font-size:25px;text-transform:uppercase;line-height:1.1;color:var(--ink);margin-bottom:.4em!important}
 .me-placeholder p{color:var(--muted)}
-.me-reviews__live{position:relative}
+.me-reviews__live{position:relative;isolation:isolate;contain:paint}
+.me-watermark{transform:translateZ(0)}
+/* Smooth review slider: each card moves on its own GPU layer, and the shadow is painted once instead of every frame */
+#reviews .ti-review-item{will-change:transform;backface-visibility:hidden}
+#reviews .ti-review-item>.ti-inner{transform:translateZ(0)}
+#reviews .ti-reviews-container-wrapper{touch-action:pan-y}
 .me-rating{display:inline-flex;align-items:center;flex-wrap:wrap;gap:8px;color:var(--ink);font-weight:600;line-height:1.2}
 .me-stars{display:inline-flex;gap:2px}
 .me-stars svg{width:18px;height:18px;fill:var(--yellow)}
