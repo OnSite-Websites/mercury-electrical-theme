@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ME_VERSION', '1.0.14' );
+define( 'ME_VERSION', '1.0.15' );
 
 /**
  * Business details. Editable in Appearance → Customize → Business Details.
@@ -748,3 +748,11 @@ add_filter( 'body_class', function ( $classes ) {
 	$classes[] = is_front_page() ? 'me-is-home' : 'me-is-inner';
 	return $classes;
 } );
+
+/*
+ * Plugin auto-updates on for every plugin (OnSite Websites standard).
+ * Hostinger hides WordPress's own auto-update toggles on its sites; this
+ * switches them back on and opts every plugin in.
+ */
+add_filter( 'plugins_auto_update_enabled', '__return_true', 99 );
+add_filter( 'auto_update_plugin', '__return_true', 99 );
