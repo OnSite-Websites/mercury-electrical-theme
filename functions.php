@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ME_VERSION', '1.0.13' );
+define( 'ME_VERSION', '1.0.14' );
 
 /**
  * Business details. Editable in Appearance → Customize → Business Details.
@@ -216,9 +216,11 @@ add_filter( 'render_block', function ( $html, $block ) {
 	} elseif ( 'core/gallery' === $block['blockName'] ) {
 		// First photo is double size on the grid; the rest are a quarter of the width.
 		$n    = 0;
-		$html = preg_replace_callback( '/\ssizes="[^"]*"/', function () use ( &$n ) {
+		// Sizes are usually added later by WordPress, so set them on each <img> now (it keeps ours).
+		$html = preg_replace( '/(<img\b[^>]*?)\ssizes="[^"]*"/', '$1', $html );
+		$html = preg_replace_callback( '/<img\s/', function () use ( &$n ) {
 			$n++;
-			return ' sizes="' . ( 1 === $n ? '(max-width: 767px) 92vw, 600px' : '(max-width: 767px) 46vw, 300px' ) . '"';
+			return '<img sizes="' . ( 1 === $n ? '(max-width: 767px) 92vw, 600px' : '(max-width: 767px) 46vw, 300px' ) . '" ';
 		}, $html );
 	}
 	return $html;
