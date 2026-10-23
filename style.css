@@ -4,7 +4,7 @@ Theme URI: https://mercuryelectrical.com.au/
 Author: OnSite Websites
 Author URI: https://onsitewebsites.com.au/
 Description: One-page custom theme for Mercury Electrical QLD, a residential electrician on the Fraser Coast. All page content is edited in Pages → Home with the standard WordPress block editor. Business details live in Appearance → Customize → Business Details.
-Version: 1.0.12
+Version: 1.0.13
 Requires at least: 6.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -193,7 +193,7 @@ strong{font-weight:700}
 .me-quote__intro a:hover{color:var(--paper)}
 .me-quote__licence{font-size:13.5px!important;color:var(--on-ink-2)!important;margin-top:14px!important}
 .me-quote__form{position:relative;z-index:1}
-.me-watermark{position:absolute;pointer-events:none;width:440px;height:auto;opacity:.05;z-index:0}
+.me-watermark{position:absolute;pointer-events:none;width:440px;height:auto;object-fit:contain;opacity:.05;z-index:0}
 .me-watermark--quote{left:calc(var(--pad) - 30px);top:calc(var(--trust-h,110px) / 2 + 22px);bottom:22px;width:auto;height:calc(100% - var(--trust-h,110px) / 2 - 44px);opacity:.06}
 .me-watermark--hero{left:-110px;bottom:-110px;width:400px;opacity:.06}
 .me-watermark--reviews{right:calc(var(--pad) + 10px);top:28px;width:270px;opacity:.08}
